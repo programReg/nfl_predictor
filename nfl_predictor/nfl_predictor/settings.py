@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-2i0r9(hb)^+s1g2==t(+ozh)g(i7piaycl^as-cjvu_iele=qh
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'nfl-game-predictior.vercel.app']
 
 
 
