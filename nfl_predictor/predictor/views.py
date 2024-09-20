@@ -8,9 +8,10 @@ from sklearn.model_selection import train_test_split
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 import joblib
+from django.conf import settings
 
 # Load and preprocess data
-csv_file_path = os.path.join(os.path.dirname(__file__), 'team_stats_2003_2023.csv')
+csv_file_path = os.path.join(settings.BASE_DIR, 'data', 'team_stats_2003_2023.csv')
 data = pd.read_csv(csv_file_path)
 
 # Create new columns(features) for point and yard differences
