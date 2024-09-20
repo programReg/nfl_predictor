@@ -8,15 +8,9 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 import joblib
 
-# Define the base directory
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
 # Load and preprocess data
-csv_file_path = os.path.join(BASE_DIR, '..', 'team_stats_2003_2023.csv')
+csv_file_path = os.path.join(os.path.dirname(__file__), 'team_stats_2003_2023.csv')
 data = pd.read_csv(csv_file_path)
-
-# Load and preprocess data
-# data = pd.read_csv('/Users/reggie/Documents/resume projects/nfl_data/team_stats_2003_2023.csv')
 
 # Create new columns(features) for point and yard differences
 data['points_diff'] = data['points'] - data['points_opp']
