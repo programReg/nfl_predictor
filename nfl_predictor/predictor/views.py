@@ -85,5 +85,3 @@ def predict(request):
 def get_teams(request):
     teams = data['team'].unique().tolist()
     return Response(teams)
-
-print(csv_file_path)
