@@ -16,7 +16,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'fallback-secret-key')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['https://nfl-prediction-85f2838f1306.herokuapp.com']
 
 
 
@@ -32,6 +32,7 @@ INSTALLED_APPS = [
      'predictor',
      'rest_framework',
      'corsheaders',
+     'django_extensions',
 ]
 
 CORS_ALLOW_ALL_ORIGINS = True
@@ -128,7 +129,7 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Additional settings for collecting static files
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+# STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 # Whitenoise for serving static files
 django_heroku.settings(locals())

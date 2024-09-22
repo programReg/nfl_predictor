@@ -21,10 +21,13 @@ function App() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:8000/api/predict/", {
-        home_team: homeTeam,
-        away_team: awayTeam,
-      });
+      const response = await axios.post(
+        "https://nfl-prediction-85f2838f1306.herokuapp.com/api/predict/",
+        {
+          home_team: homeTeam,
+          away_team: awayTeam,
+        }
+      );
       setPrediction(response.data.prediction);
       setWinPercentage(response.data.win_percentage);
     } catch (error) {
