@@ -11,12 +11,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('SECRET_KEY', 'fallback-secret-key')
+SECRET_KEY = os.environ.get('SECRET_KEY', 'your-default-secret-key')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 
-ALLOWED_HOSTS = ['https://nfl-prediction-85f2838f1306.herokuapp.com']
+ALLOWED_HOSTS = ['*']
 
 
 
@@ -32,7 +32,6 @@ INSTALLED_APPS = [
      'predictor',
      'rest_framework',
      'corsheaders',
-     'django_extensions',
 ]
 
 CORS_ALLOW_ALL_ORIGINS = True
@@ -51,7 +50,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'nfl_predictor.urls'
@@ -73,17 +71,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'nfl_predictor.wsgi.application'
-
-
-# Database
-# https://docs.djangoproject.com/en/5.0/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
 
 
 # Password validation
@@ -136,5 +123,3 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # Additional settings for collecting static files
 # STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
-# Whitenoise for serving static files
-django_heroku.settings(locals())
