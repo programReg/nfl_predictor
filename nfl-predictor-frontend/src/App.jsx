@@ -13,7 +13,7 @@ function App() {
   useEffect(() => {
     // Fetch the list of teams when the component mounts (.. when this section of the page loads up for the first time)
     axios
-      .get("https://nfl-predictor.onrender.com/api/teams/")
+      .get("https://nfl-prediction-febee8c9f5e0.herokuapp.com/api/teams/")
       .then((response) => setTeams(response.data))
       .catch((error) => console.error("Error fetching teams:", error));
   }, []);
@@ -22,7 +22,7 @@ function App() {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "https://nfl-predictor.onrender.com/api/predict/",
+        "https://nfl-prediction-febee8c9f5e0.herokuapp.com/api/predict/",
         {
           home_team: homeTeam,
           away_team: awayTeam,
