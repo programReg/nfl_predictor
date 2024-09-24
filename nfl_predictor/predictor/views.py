@@ -31,15 +31,9 @@ y = data['win_loss_perc']
 # Split the data into training and testing sets
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-# Scale the features & Fix StandardScaler feature names warning
-if not hasattr(X_train, 'columns'):
-    feature_names = [f'feature_{i}' for i in range(X_train.shape[1])]
-else:
-    feature_names = X_train.columns
-
+# Scale the features
 scaler = StandardScaler()
-scaler.fit(X_train, feature_names=feature_names)
-X_train_scaled = scaler.transform(X_train)
+X_train_scaled = scaler.fit_transform(X_train)
 X_test_scaled = scaler.transform(X_test)
 
 # Train the model
@@ -68,20 +62,9 @@ def predict(request):
         home_features = home_team_data[features].values
         away_features = away_team_data[features].values
 
-        # Fix StandardScaler feature names warning
-        if not hasattr(home_features, 'shape'):
-            home_feature_names = [f'feature_{i}' for i in range(home_features.shape[0])]
-        else:
-            home_feature_names = home_features.columns
-
-        if not hasattr(away_features, 'shape'):
-            away_feature_names = [f'feature_{i}' for i in range(away_features.shape[0])]
-        else:
-            away_feature_names = away_features.columns
-
         # Scale input data
-        home_features_scaled = loaded_scaler.transform([home_features], feature_names=home_feature_names)
-        away_features_scaled = loaded_scaler.transform([away_features], feature_names=away_feature_names)
+        home_features_scaled = loaded_scaler.transform([home_features])
+        away_features_scaled = loaded_scaler.transform([away_features])
 
         # Make predictions
         home_win_perc = loaded_model.predict(home_features_scaled)[0]
